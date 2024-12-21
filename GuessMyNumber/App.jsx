@@ -9,15 +9,6 @@ import Colors from "./constants/colors";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
 
-  const generateRandomBetween = (min, max, exclude) => {
-    const rndNum = Math.floor(Math.random() * (max - min)) + min;
-    if (rndNum === exclude) {
-      return generateRandomBetween(min, max, exclude);
-    } else {
-      return rndNum;
-    }
-  };
-
   const pickedNumberHandler = number => {
     setUserNumber(number);
   };
