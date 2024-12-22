@@ -2,6 +2,7 @@ import { StyleSheet, ImageBackground } from "react-native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useFonts } from 'expo-font';
 
 import Colors from "./constants/colors";
 
