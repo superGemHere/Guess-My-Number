@@ -3,6 +3,7 @@ import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from 'expo-font';
+import AppLoading from "expo-app-loading";
 
 import Colors from "./constants/colors";
 
@@ -13,6 +14,15 @@ import GameOverScreen from "./screens/GameOverScreen";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [isGameOver, setIsGameOver] = useState(true);
+
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
 
   const pickedNumberHandler = number => {
     setUserNumber(number);
