@@ -30,8 +30,9 @@ export default function App() {
     setIsGameOver(false);
   };
 
-  const gameOverHandler = () => {
+  const gameOverHandler = (numberOfRounds) => {
     setIsGameOver(true);
+    setRoundsNumber(numberOfRounds);
   };
 
   const startNewGameHandler = () => {
