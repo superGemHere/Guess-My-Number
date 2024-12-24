@@ -1,4 +1,11 @@
-import { View, TextInput, StyleSheet, Alert} from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView
+} from "react-native";
 import React, { useState } from "react";
 
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -40,40 +47,49 @@ const StartGameScreen = ({ onPickNumber }) => {
   };
 
   return (
-    <View style={styles.rootContaner}>
-      <Title>Guess My Number</Title>
-      <Card>
-        <InstructionText>Enter a Number</InstructionText>
-        <TextInput
-          style={styles.input}
-          maxLength={2}
-          keyboardType={"number-pad"}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={inputNumberHandler}
-          value={inputNumber}
-        />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonWrapper}>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-          </View>
-          <View style={styles.buttonWrapper}>
-            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-          </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView style={styles.screen} behavior="position">
+        <View style={styles.rootContaner}>
+          <Title>Guess My Number</Title>
+          <Card>
+            <InstructionText>Enter a Number</InstructionText>
+            <TextInput
+              style={styles.input}
+              maxLength={2}
+              keyboardType={"number-pad"}
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={inputNumberHandler}
+              value={inputNumber}
+            />
+            <View style={styles.buttonsContainer}>
+              <View style={styles.buttonWrapper}>
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+              </View>
+              <View style={styles.buttonWrapper}>
+                <PrimaryButton onPress={confirmInputHandler}>
+                  Confirm
+                </PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-  rootContaner:{
+  screen: {
+    flex: 1
+  },
+  rootContaner: {
     flex: 1,
     marginTop: 100,
     alignItems: "center"
-  },  
+  },
   input: {
     height: 70,
     width: 50,
