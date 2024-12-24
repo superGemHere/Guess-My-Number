@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Alert,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  useWindowDimensions
 } from "react-native";
 import React, { useState } from "react";
 
@@ -16,6 +17,7 @@ import InstructionText from "../components/ui/InstructionText";
 
 const StartGameScreen = ({ onPickNumber }) => {
   const [inputNumber, setInputNumber] = useState("");
+  const { width, height } = useWindowDimensions();
 
   const inputNumberHandler = inputText => {
     setInputNumber(inputText);
@@ -46,10 +48,24 @@ const StartGameScreen = ({ onPickNumber }) => {
     onPickNumber(chosenNumber);
   };
 
+  let marginTop = 100;
+  
+  if(width < 380) {
+    marginTop = 50;
+  }
+
+  if (height < 400) {
+    marginTop = 25;
+  }
+
+  let rootContainerStyle = {
+    marginTop: marginTop,
+  }
+
   return (
     <ScrollView style={styles.screen}>
       <KeyboardAvoidingView style={styles.screen} behavior="position">
-        <View style={styles.rootContaner}>
+        <View style={[styles.rootContaner, rootContainerStyle]}>
           <Title>Guess My Number</Title>
           <Card>
             <InstructionText>Enter a Number</InstructionText>
